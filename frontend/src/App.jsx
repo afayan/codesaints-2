@@ -27,11 +27,23 @@ function App() {
       alert("Please select a file first!");
       return;
     }
-  
+
     const formData = new FormData();
-  
-    
-  }
+    formData.append("file", file); // "file" is the key expected by the backend
+
+    try {
+      const response = await fetch("http://localhost:9000/upload", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await response.json();
+      alert(data.message);
+    } catch (error) {
+      console.error("Error uploading file:", error);
+      alert("Failed to upload file.");
+    }
+  };
 
   // sentiment, emotion, neutral, pitch, loudness
 
@@ -104,8 +116,8 @@ function App() {
 
           ) : (
             <>
-              <input type="file" />
-              <button>Submit</button>
+              <input type="file" onChange={(e)=>handleFileChange(e)}/>
+              <button onClick={()=>handleUpload()}>Submit</button>
             </>
           )}
         </div>

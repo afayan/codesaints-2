@@ -3,6 +3,8 @@ import { Server } from 'socket.io';
 import http from 'http';
 import cors from 'cors';
 import { spawn } from 'child_process';
+import multer from 'multer';
+import path from 'path';
 
 const app = express();
 app.use(cors());
@@ -15,6 +17,17 @@ const io = new Server(server, {
 });
 
 let audiostream = [];
+let filepath = ''
+
+const storage = multer.diskStorage({
+    destination: "uploads/", // Folder where files will be saved
+    filename: (req, file, cb) => {
+      cb(null, Date.now() + path.extname(file.originalname)); // Preserve file extension
+    },
+  });
+  
+const upload = multer({ storage: storage });
+
 
 io.on("connection", (socket) => {
     console.log("client connected");
@@ -76,6 +89,12 @@ io.on("connection", (socket) => {
         audiostream = [];
     });
 
+    socket.on('uploadedfile', () =>{
+
+        
+
+    })
+
     socket.on("disconnect", () => {
     console.log("Client disconnected");
     if (process) {
@@ -84,6 +103,14 @@ io.on("connection", (socket) => {
     }
   });
 });
+
+
+app.post("/upload", upload.single("file"), (req, res) => {
+    
+    filepath = '/uploads/req.file'
+    res.json({ message: "File uploaded successfully!", file: req.file });
+
+  });
 
 server.listen(9000, () => {
     console.log("app is listening on 9000");
