@@ -39,6 +39,9 @@ function App() {
 
       const data = await response.json();
       alert(data.message);
+
+      socket.emit('getfilestats')
+
     } catch (error) {
       console.error("Error uploading file:", error);
       alert("Failed to upload file.");

@@ -89,7 +89,7 @@ io.on("connection", (socket) => {
         audiostream = [];
     });
 
-    socket.on('uploadedfile', () =>{
+    socket.on('getfilestats', () =>{
 
         
 
