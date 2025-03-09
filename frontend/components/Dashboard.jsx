@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import MyLineChart from './MyLineChart';
+import CircleChart from './CircleChart';
 
 function Dashboard({ data }) {
 
@@ -138,6 +139,8 @@ function Dashboard({ data }) {
           <div className="label">Happy</div>
         </div>
       </div>
+
+      <span className='dd'>
       
       <div className="chart-container">
         <div className="chart-header">
@@ -188,6 +191,12 @@ function Dashboard({ data }) {
         </div>
         
         </div> */}
+
+
+      
+
+        <CircleChart percentage={46}/>
+        </span>
     </div>
   );
 }

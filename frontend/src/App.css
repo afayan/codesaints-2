@@ -561,3 +561,8 @@ button{
 #record{
   background-color: #ff3b30;
 }
+
+.dd{
+  display: flex;
+  justify-content: space-around;
+}
