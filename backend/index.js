@@ -40,7 +40,7 @@ io.on("connection", (socket) => {
             console.log("starting...");
             
 
-            process = spawn("C:\\college work\\coding\\botwebsite\\backend2\\.hackscript6env\\Scripts\\python.exe", 
+            process = spawn("C:\\college work\\coding\\botwebsite\\backend2\\myenv\\Scripts\\python.exe", 
                 ["-u", "app.py"],  
                 { cwd: 'C:\\college work\\coding\\botwebsite\\Backend2' }
             );

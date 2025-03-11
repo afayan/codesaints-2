@@ -9,9 +9,12 @@ function Dashboard({ data }) {
   const [tone, setTone] = useState('');
   const [pitch, setPitch] = useState(0)
   const [loudness, setLoudness] = useState(0)
+  const [transcript, setTranscript] = useState('Start recording')
 
   const [xvalues, setXvalues] = useState([])
   const [yvalues, setYvalues] = useState([])
+
+  
 
 
   useEffect(()=>{
@@ -24,6 +27,7 @@ function Dashboard({ data }) {
       setEmotion(data["emotion"])
       setPitch(data["pitch"])
       setLoudness(data["loudness"])
+      setTranscript(data["text"])
 
       setXvalues([...xvalues, xvalues.length + 1])
       setYvalues([...yvalues, parseFloat(data["pitch"])])
@@ -115,23 +119,21 @@ function Dashboard({ data }) {
           <span className={`status-indicator ${realtimeData.serverStatus.toLowerCase()}`}>{realtimeData.serverStatus}</span>
         </div>
       </div>
+
+      <h3 className='transcript'>{transcript}</h3>
       
       <div className="dashboard-summary">
-        <div className={`summary-card ${tone}`}>
+        <div className={`summary-card ${sentiment}`}>
           <h3>Sentiment</h3>
           <div className="big-number">{sentiment}</div>
         </div>
         
-        <div className={`summary-card ${tone}`}>
+        <div className={`summary-card ${emotion}`}>
           <h3>Emotion</h3>
           <div className="big-number">{emotion}</div>
         </div>
         
-        <div className={`summary-card ${tone}`}>
-          <h3>Tone</h3>
-          <div className="big-number">{tone}</div>
-          <div className="label"></div>
-        </div>
+  
         
         <div className={`summary-card ${tone}`}>
           <h3>loudness</h3>

@@ -22,7 +22,7 @@ function MyLineChart({ xvalues, yvalues }) {
           {
             id: "line-series",
             data: seriesData, // Pass the y-values here
-            label: "Data Line", // Optional label
+            label: "Pitch", // Optional label
             color: "blue",
           },
         ]}
